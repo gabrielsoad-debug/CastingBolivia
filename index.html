@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASTING DIGITAL | Book de Talento</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0f0f13;
+            --card-bg: #1a1a23;
+            --accent: #ff2e63;
+            --accent-hover: #ff4777;
+            --primary: #6c63ff;
+            --secondary: #36d1dc;
+            --text: #e0e0e0;
+            --text-light: #a0a0b0;
+            --border: #2a2a35;
+            --success: #00d26a;
+            --warning: #ffb347;
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Colores redes sociales */
+            --instagram: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            --facebook: #1877F2;
+            --tiktok: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER Y NAVEGACIÓN ===== */
+        .navbar {
+            background: rgba(26, 26, 35, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .refresh-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+        }
+
+        .stats {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .stats .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* ===== SISTEMA DE BÚSQUEDA Y FILTROS ===== */
+        .filters-section {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .search-container {
+            margin-bottom: 25px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .filters-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .filter-select {
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-select:hover, .filter-select:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .filter-select option {
+            background: var(--card-bg);
+            color: var(--text);
+        }
+
+        .clear-filters {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-light);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: var(--transition);
+            align-self: flex-end;
+        }
+
+        .clear-filters:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ===== CONTENIDO PRINCIPAL ===== */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 50px;
+        }
+
+        /* ===== TARJETAS DE TALENTO (VERSIÓN VERTICAL) ===== */
+        .talent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .talent-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .talent-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+            border-color: rgba(108, 99, 255, 0.3);
+        }
+
+        /* CONTENEDOR DE FOTO VERTICAL */
+        .photo-container {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #1a1a23 0%, #2a2a35 100%);
+        }
+
+        .card-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .talent-card:hover .card-photo {
+            transform: scale(1.05);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(26, 26, 35, 0.9), transparent);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .talent-category {
+            background: var(--accent);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .talent-gender {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+
+        /* CONTENIDO DE LA TARJETA */
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .talent-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+            line-height: 1.3;
+        }
+
+        .talent-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .talent-location i {
+            color: var(--primary);
+        }
+
+        .talent-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .detail-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        .skill-tag {
+            background: rgba(108, 99, 255, 0.15);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(108, 99, 255, 0.3);
+        }
+
+        /* BOTONES DE ACCIÓN */
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .video-btn {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: white;
+        }
+
+        .video-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.3);
+        }
+
+        /* ===== BOTONES DE REDES SOCIALES ===== */
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .social-btn i {
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-btn span {
+            flex: 1;
+            text-align: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .instagram-btn {
+            background: var(--instagram);
+            color: white;
+        }
+
+        .instagram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.3);
+        }
+
+        .facebook-btn {
+            background: var(--facebook);
+            color: white;
+        }
+
+        .facebook-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(24, 119, 242, 0.3);
+        }
+
+        .tiktok-btn {
+            background: var(--tiktok);
+            color: white;
+        }
+
+        .tiktok-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== ESTADOS ===== */
+        .loading-state {
+            text-align: center;
+            padding: 80px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(108, 99, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            margin: 0 auto 25px;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            grid-column: 1 / -1;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 2px dashed var(--border);
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            color: var(--border);
+            margin-bottom: 20px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 60px;
+            padding: 30px 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) {
+            .talent-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .nav-controls {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .filters-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .talent-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .photo-container {
+                height: 320px;
+            }
+            
+            .social-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .social-btn i {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .talent-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .photo-container {
+                height: 280px;
+            }
+            
+            .card-actions {
+                flex-direction: column;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .social-links {
+                gap: 6px;
+            }
+        }
+
+        /* ===== ANIMACIONES ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* ===== SCROLLBAR PERSONALIZADA ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-film"></i>
+                CASTING DIGITAL
+            </a>
+            
+            <div class="nav-controls">
+                <div class="stats">
+                    <i class="fas fa-users"></i>
+                    <span>Talentos: <span class="highlight" id="talent-count">0</span></span>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i>
+                    Actualizar
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SISTEMA DE BÚSQUEDA Y FILTROS -->
+    <section class="filters-section">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" 
+                       class="search-input" 
+                       id="search-input" 
+                       placeholder="Buscar talento por nombre, habilidades, ciudad..."
+                       autocomplete="off">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
+
+        <div class="filters-container">
+            <div class="filter-group">
+                <label class="filter-label">Género</label>
+                <select class="filter-select" id="filter-gender">
+                    <option value="">Todos</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Ciudad</label>
+                <select class="filter-select" id="filter-city">
+                    <option value="">Todas</option>
+                    <!-- Las ciudades se cargarán dinámicamente -->
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Área de Enfoque</label>
+                <select class="filter-select" id="filter-area">
+                    <option value="">Todas</option>
+                    <!-- Las áreas se cargarán dinámicamente -->
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Edad</label>
+                <select class="filter-select" id="filter-age">
+                    <option value="">Todas las edades</option>
+                    <option value="18-25">18-25 años</option>
+                    <option value="26-35">26-35 años</option>
+                    <option value="36+">36+ años</option>
+                </select>
+            </div>
+
+            <button class="clear-filters" id="clear-filters">
+                <i class="fas fa-times"></i>
+                Limpiar filtros
+            </button>
+        </div>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-container">
+        <div id="talent-container">
+            <div class="loading-state">
+                <div class="loading-spinner"></div>
+                <p style="color: var(--text-light); margin-top: 15px;">
+                    Cargando talentos desde Google Sheets...
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>Plataforma de Casting Digital • Conectada a Google Sheets en tiempo real</p>
+        <div class="footer-links">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScH1P7fVgyYyW9V_GOOaOC5nZUVqUBfdgxU2Jv3d0l5HskobQ/viewform" 
+               target="_blank" class="footer-link">
+                <i class="fas fa-plus-circle"></i> Agregar talento
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1-ME_fak7GmarMFoFKboeshrJjs09cVz91RbnZWxJ--8/edit#gid=1450427184" 
+               target="_blank" class="footer-link">
+                <i class="fas fa-table"></i> Ver hoja de datos
+            </a>
+            <a href="#" class="footer-link" id="export-data">
+                <i class="fas fa-download"></i> Exportar datos
+            </a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #666;">
+            © 2024 Book de Talento Digital • v4.0 con Redes Sociales
+        </p>
+    </footer>
+
+    <script>
+        // ================= CONFIGURACIÓN =================
+        const ORIGINAL_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT7LFrMcn-08Ktj9llV6twD3sLN5cMcRm6V4CkF8SAsyqo3ciX-BkoXtm7eyULBNa2ny-c-hAQlN-wm/pub?output=csv';
+        const PROXIES = [
+            `https://corsproxy.io/?${encodeURIComponent(ORIGINAL_SHEET_URL)}`,
+            `https://api.allorigins.win/raw?url=${encodeURIComponent(ORIGINAL_SHEET_URL)}`,
+            ORIGINAL_SHEET_URL
+        ];
+
+        // Mapeo de columnas (INCLUYENDO REDES SOCIALES)
+        const COLUMN_MAP = {
+            timestamp: 'Marca temporal',
+            nombre: 'Nombre Completo',
+            edad: 'Edad',
+            altura: 'Altura',
+            peso: 'Peso',
+            tallaRopa: 'Talla de Ropa',
+            tallaCalzado: 'Talla de Calzado',
+            ciudad: 'Ciudad Residencia',
+            habilidades: 'Habilidades Especiales',
+            experiencia: 'Experiencia Relevante',
+            foto: 'sube tu foto',
+            video: 'VideoReel',
+            areaEnfoque: 'Área de Enfoque',
+            genero: 'Genero',
+            // NUEVAS COLUMNAS PARA REDES SOCIALES
+            instagram: 'Enlace de Instagram Ejem: https://instagram.com/maria.actriz',
+            facebook: 'Enlace de Facebook Ejem: https://facebook.com/maria.actriz',
+            tiktok: 'Enlace de TikTok Ejem: https://tiktok.com/@maria.danza'
+        };
+
+        // Variables globales
+        let allTalents = [];
+        let filteredTalents = [];
+        let currentProxyIndex = 0;
+        let uniqueCities = new Set();
+        let uniqueAreas = new Set();
+        
+        // Variables para búsqueda
+        let searchTimeout = null;
+        const searchInput = document.getElementById('search-input');
+        const filterGender = document.getElementById('filter-gender');
+        const filterCity = document.getElementById('filter-city');
+        const filterArea = document.getElementById('filter-area');
+        const filterAge = document.getElementById('filter-age');
+        const clearFiltersBtn = document.getElementById('clear-filters');
+
+        // ================= FUNCIONES PRINCIPALES =================
+
+        // Función para convertir fotos de Drive
+        function convertDriveToImage(driveUrl) {
+            if (!driveUrl || driveUrl.trim() === '') {
+                return 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
+            }
+            
+            if (driveUrl.match(/\.(jpg|jpeg|png|gif|webp)(\?.*)?$/i)) {
+                return driveUrl;
+            }
+            
+            let fileId = null;
+            const patterns = [
+                /\/open\?id=([a-zA-Z0-9_-]+)/,
+                /\/file\/d\/([a-zA-Z0-9_-]+)/,
+                /\/d\/([a-zA-Z0-9_-]+)/,
+                /id=([a-zA-Z0-9_-]+)/
+            ];
+            
+            for (const pattern of patterns) {
+                const match = driveUrl.match(pattern);
+                if (match && match[1]) {
+                    fileId = match[1];
+                    break;
+                }
+            }
+            
+            if (fileId) {
+                return `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`;
+            }
+            
+            return driveUrl;
+        }
+
+        // Función para obtener ID de YouTube
+        function getYouTubeVideoId(url) {
+            if (!url) return null;
+            if (url.includes('drive.google.com')) return null;
+            
+            const patterns = [
+                /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+                /youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/
+            ];
+            
+            for (const pattern of patterns) {
+                const match = url.match(pattern);
+                if (match && match[1]) return match[1];
+            }
+            
+            return null;
+        }
+
+        // FUNCIÓN PARA EXTRAER USUARIO DE REDES SOCIALES
+        function extractSocialUsername(url, platform) {
+            if (!url || url.trim() === '' || url.includes('Ejem:')) return null;
+            
+            let cleanUrl = url.trim().toLowerCase();
+            
+            // Asegurar que tenga https:// si no lo tiene
+            if (!cleanUrl.startsWith('http')) {
+                cleanUrl = 'https://' + cleanUrl;
+            }
+            
+            try {
+                if (platform === 'instagram') {
+                    const patterns = [
+                        /(?:instagram\.com\/|@)([a-zA-Z0-9_.]+)(?:\/|$)/,
+                        /(?:www\.)?instagram\.com\/([a-zA-Z0-9_.]+)/
+                    ];
+                    
+                    for (const pattern of patterns) {
+                        const match = cleanUrl.match(pattern);
+                        if (match && match[1]) {
+                            const username = match[1].replace('/', '');
+                            return username.startsWith('@') ? username : '@' + username;
+                        }
+                    }
+                }
+                
+                if (platform === 'facebook') {
+                    const patterns = [
+                        /(?:facebook\.com\/|fb\.com\/)([a-zA-Z0-9.]+)(?:\/|$)/,
+                        /(?:www\.)?facebook\.com\/([a-zA-Z0-9.]+)/
+                    ];
+                    
+                    for (const pattern of patterns) {
+                        const match = cleanUrl.match(pattern);
+                        if (match && match[1]) {
+                            return match[1].replace('/', '');
+                        }
+                    }
+                }
+                
+                if (platform === 'tiktok') {
+                    const patterns = [
+                        /(?:tiktok\.com\/@|@)([a-zA-Z0-9_.]+)(?:\/|$)/,
+                        /(?:www\.)?tiktok\.com\/(?:@)?([a-zA-Z0-9_.]+)/
+                    ];
+                    
+                    for (const pattern of patterns) {
+                        const match = cleanUrl.match(pattern);
+                        if (match && match[1]) {
+                            const username = match[1].replace('/', '');
+                            return username.startsWith('@') ? username : '@' + username;
+                        }
+                    }
+                }
+                
+                // Si no se puede extraer usuario, devolver el enlace acortado
+                return cleanUrl.length > 25 ? cleanUrl.substring(0, 25) + '...' : cleanUrl;
+            } catch (error) {
+                console.error(`Error procesando ${platform}:`, error);
+                return cleanUrl;
+            }
+        }
+
+        // Función para limpiar enlace de red social
+        function cleanSocialUrl(url) {
+            if (!url || url.trim() === '') return '';
+            
+            let cleanUrl = url.trim();
+            
+            // Limpiar "Ejem: ..." si está presente
+            if (cleanUrl.includes('Ejem:')) {
+                cleanUrl = cleanUrl.split('Ejem:')[0].trim();
+            }
+            
+            // Si queda vacío después de limpiar
+            if (!cleanUrl || cleanUrl === 'https://' || cleanUrl === 'http://') {
+                return '';
+            }
+            
+            // Asegurar que tenga http:// si no lo tiene
+            if (!cleanUrl.startsWith('http')) {
+                cleanUrl = 'https://' + cleanUrl;
+            }
+            
+            return cleanUrl;
+        }
+
+        // Parsear línea CSV
+        function parseCSVLine(line) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+            let quoteChar = '';
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                const nextChar = line[i + 1];
+                
+                if ((char === '"' || char === "'") && !inQuotes) {
+                    inQuotes = true;
+                    quoteChar = char;
+                    continue;
+                }
+                
+                if (char === quoteChar && inQuotes) {
+                    if (nextChar === quoteChar) {
+                        current += char;
+                        i++;
+                        continue;
+                    }
+                    inQuotes = false;
+                    quoteChar = '';
+                    continue;
+                }
+                
+                if (char === ',' && !inQuotes) {
+                    values.push(current.trim());
+                    current = '';
+                    continue;
+                }
+                
+                current += char;
+            }
+            
+            values.push(current.trim());
+            
+            return values.map(v => {
+                if ((v.startsWith('"') && v.endsWith('"')) || 
+                    (v.startsWith("'") && v.endsWith("'"))) {
+                    return v.substring(1, v.length - 1);
+                }
+                return v;
+            });
+        }
+
+        // Cargar datos
+        async function loadData() {
+            const container = document.getElementById('talent-container');
+            
+            try {
+                container.innerHTML = `
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p style="color: var(--text-light); margin-top: 15px;">
+                            Actualizando datos desde Google Sheets...
+                        </p>
+                    </div>
+                `;
+                
+                let success = false;
+                let csvText = '';
+                
+                for (let i = 0; i < PROXIES.length; i++) {
+                    try {
+                        const proxyUrl = PROXIES[i];
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), 10000);
+                        
+                        const response = await fetch(`${proxyUrl}&t=${Date.now()}`, {
+                            signal: controller.signal
+                        });
+                        
+                        clearTimeout(timeoutId);
+                        
+                        if (response.ok) {
+                            csvText = await response.text();
+                            if (csvText && csvText.trim().length > 10) {
+                                currentProxyIndex = i;
+                                success = true;
+                                break;
+                            }
+                        }
+                    } catch (error) {
+                        continue;
+                    }
+                }
+                
+                if (!success) {
+                    throw new Error('Error de conexión');
+                }
+                
+                allTalents = parseCSVData(csvText);
+                updateFilters();
+                applyFilters();
+                
+                document.getElementById('talent-count').textContent = allTalents.length;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle empty-icon"></i>
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">Error de conexión</h3>
+                        <p style="margin-bottom: 20px;">No se pudieron cargar los datos</p>
+                        <button class="refresh-btn" onclick="loadData()">
+                            <i class="fas fa-redo"></i> Reintentar
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // Parsear datos CSV
+        function parseCSVData(csvText) {
+            const lines = csvText.split('\n').filter(line => line.trim() !== '');
+            if (lines.length < 2) return [];
+            
+            const headers = parseCSVLine(lines[0]);
+            const columnIndices = {};
+            
+            Object.keys(COLUMN_MAP).forEach(key => {
+                const searchTerm = COLUMN_MAP[key].toLowerCase();
+                for (let i = 0; i < headers.length; i++) {
+                    if (headers[i].toLowerCase().includes(searchTerm)) {
+                        columnIndices[key] = i;
+                        break;
+                    }
+                }
+            });
+            
+            const talents = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                const values = parseCSVLine(lines[i]);
+                const nombreIndex = columnIndices.nombre;
+                
+                if (nombreIndex === undefined || !values[nombreIndex]) continue;
+                
+                const nombre = values[nombreIndex].trim();
+                if (nombre.includes('Jose Pedro') || nombre.includes('Ejem:')) continue;
+                
+                const talent = {};
+                Object.keys(columnIndices).forEach(key => {
+                    const index = columnIndices[key];
+                    if (index !== undefined && values[index]) {
+                        let value = values[index];
+                        if (value.includes('Ejem:')) {
+                            value = value.split('Ejem:')[0].trim();
+                        }
+                        talent[key] = value.replace(/^["']+|["']+$/g, '').trim();
+                    } else {
+                        talent[key] = '';
+                    }
+                });
+                
+                if (talent.nombre && talent.nombre.trim()) {
+                    // Procesar foto
+                    talent.foto = convertDriveToImage(talent.foto);
+                    talent.id = talents.length + 1;
+                    
+                    // Extraer solo el número de la edad
+                    if (talent.edad) {
+                        const ageMatch = talent.edad.match(/\d+/);
+                        talent.edadNum = ageMatch ? parseInt(ageMatch[0]) : null;
+                    }
+                    
+                    // Limpiar enlaces de redes sociales
+                    talent.instagram = cleanSocialUrl(talent.instagram);
+                    talent.facebook = cleanSocialUrl(talent.facebook);
+                    talent.tiktok = cleanSocialUrl(talent.tiktok);
+                    
+                    talents.push(talent);
+                }
+            }
+            
+            return talents;
+        }
+
+        // ================= SISTEMA DE FILTROS =================
+
+        // Actualizar opciones de filtros
+        function updateFilters() {
+            uniqueCities.clear();
+            uniqueAreas.clear();
+            
+            allTalents.forEach(talent => {
+                if (talent.ciudad) uniqueCities.add(talent.ciudad);
+                if (talent.areaEnfoque) uniqueAreas.add(talent.areaEnfoque);
+            });
+            
+            const citySelect = document.getElementById('filter-city');
+            citySelect.innerHTML = '<option value="">Todas</option>';
+            Array.from(uniqueCities).sort().forEach(city => {
+                if (city) {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    option.textContent = city;
+                    citySelect.appendChild(option);
+                }
+            });
+            
+            const areaSelect = document.getElementById('filter-area');
+            areaSelect.innerHTML = '<option value="">Todas</option>';
+            Array.from(uniqueAreas).sort().forEach(area => {
+                if (area) {
+                    const option = document.createElement('option');
+                    option.value = area;
+                    option.textContent = area;
+                    areaSelect.appendChild(option);
+                }
+            });
+        }
+
+        // Aplicar filtros
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const genderFilter = filterGender.value;
+            const cityFilter = filterCity.value;
+            const areaFilter = filterArea.value;
+            const ageFilter = filterAge.value;
+            
+            filteredTalents = allTalents.filter(talent => {
+                if (searchTerm) {
+                    const searchFields = [
+                        talent.nombre,
+                        talent.ciudad,
+                        talent.habilidades,
+                        talent.experiencia,
+                        talent.areaEnfoque
+                    ].join(' ').toLowerCase();
+                    
+                    if (!searchFields.includes(searchTerm)) {
+                        return false;
+                    }
+                }
+                
+                if (genderFilter && talent.genero !== genderFilter) {
+                    return false;
+                }
+                
+                if (cityFilter && talent.ciudad !== cityFilter) {
+                    return false;
+                }
+                
+                if (areaFilter && talent.areaEnfoque !== areaFilter) {
+                    return false;
+                }
+                
+                if (ageFilter && talent.edadNum) {
+                    const age = talent.edadNum;
+                    if (ageFilter === '18-25' && (age < 18 || age > 25)) return false;
+                    if (ageFilter === '26-35' && (age < 26 || age > 35)) return false;
+                    if (ageFilter === '36+' && age < 36) return false;
+                }
+                
+                return true;
+            });
+            
+            displayTalents();
+        }
+
+        // Mostrar talentos
+        function displayTalents() {
+            const container = document.getElementById('talent-container');
+            
+            if (filteredTalents.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search empty-icon"></i>
+                        <h3>No se encontraron talentos</h3>
+                        <p>Prueba con otros criterios de búsqueda o limpia los filtros</p>
+                        <button class="clear-filters" onclick="clearAllFilters()" 
+                                style="margin-top: 20px; background: var(--primary); color: white;">
+                            <i class="fas fa-times"></i> Limpiar todos los filtros
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            const cardsHTML = filteredTalents.map((talent, index) => {
+                const youtubeId = getYouTubeVideoId(talent.video);
+                const hasVideo = youtubeId !== null;
+                
+                // Procesar habilidades para mostrar máximo 3
+                const habilidades = talent.habilidades ? 
+                    talent.habilidades.split(',').map(h => h.trim()).filter(h => h) : [];
+                
+                // Verificar si tiene redes sociales
+                const hasSocialMedia = talent.instagram || talent.facebook || talent.tiktok;
+                
+                return `
+                    <div class="talent-card fade-in" style="animation-delay: ${index * 0.05}s">
+                        <div class="photo-container">
+                            <img src="${talent.foto}" 
+                                 alt="${talent.nombre}" 
+                                 class="card-photo"
+                                 onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                            
+                            <div class="photo-overlay">
+                                <div class="talent-category">${talent.areaEnfoque || 'Talento'}</div>
+                                <div class="talent-gender">${talent.genero || ''}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-content">
+                            <h3 class="talent-name">${talent.nombre}</h3>
+                            
+                            <div class="talent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${talent.ciudad || 'Ubicación no especificada'}</span>
+                            </div>
+                            
+                            <div class="talent-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Edad</span>
+                                    <span class="detail-value">${talent.edad || 'N/A'}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Altura</span>
+                                    <span class="detail-value">${talent.altura || 'N/A'}</span>
+                                </div>
+                            </div>
+                            
+                            ${habilidades.length > 0 ? `
+                                <div class="skills-tags">
+                                    ${habilidades.slice(0, 3).map(skill => 
+                                        `<span class="skill-tag">${skill}</span>`
+                                    ).join('')}
+                                    ${habilidades.length > 3 ? 
+                                        `<span class="skill-tag">+${habilidades.length - 3}</span>` : ''
+                                    }
+                                </div>
+                            ` : ''}
+                            
+                            <div class="card-actions">
+                                ${hasVideo ? `
+                                    <button class="action-btn video-btn" onclick="window.open('https://www.youtube.com/watch?v=${youtubeId}', '_blank')">
+                                        <i class="fab fa-youtube"></i> Ver Reel
+                                    </button>
+                                ` : `
+                                    <button class="action-btn video-btn" disabled style="opacity: 0.6; cursor: not-allowed;">
+                                        <i class="fab fa-youtube"></i> Sin video
+                                    </button>
+                                `}
+                            </div>
+                            
+                            ${hasSocialMedia ? `
+                                <div class="social-links">
+                                    ${talent.instagram ? `
+                                        <a href="${talent.instagram}" 
+                                           target="_blank" 
+                                           class="social-btn instagram-btn"
+                                           title="${talent.instagram}">
+                                            <i class="fab fa-instagram"></i>
+                                            <span>${extractSocialUsername(talent.instagram, 'instagram') || 'Instagram'}</span>
+                                        </a>
+                                    ` : ''}
+                                    
+                                    ${talent.facebook ? `
+                                        <a href="${talent.facebook}" 
+                                           target="_blank" 
+                                           class="social-btn facebook-btn"
+                                           title="${talent.facebook}">
+                                            <i class="fab fa-facebook-f"></i>
+                                            <span>${extractSocialUsername(talent.facebook, 'facebook') || 'Facebook'}</span>
+                                        </a>
+                                    ` : ''}
+                                    
+                                    ${talent.tiktok ? `
+                                        <a href="${talent.tiktok}" 
+                                           target="_blank" 
+                                           class="social-btn tiktok-btn"
+                                           title="${talent.tiktok}">
+                                            <i class="fab fa-tiktok"></i>
+                                            <span>${extractSocialUsername(talent.tiktok, 'tiktok') || 'TikTok'}</span>
+                                        </a>
+                                    ` : ''}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            container.innerHTML = `
+                <div class="talent-grid">
+                    ${cardsHTML}
+                </div>
+            `;
+        }
+
+        // Limpiar todos los filtros
+        function clearAllFilters() {
+            searchInput.value = '';
+            filterGender.value = '';
+            filterCity.value = '';
+            filterArea.value = '';
+            filterAge.value = '';
+            applyFilters();
+        }
+
+        // ================= EVENT LISTENERS =================
+
+        // Búsqueda con debounce
+        searchInput.addEventListener('input', () => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(applyFilters, 300);
+        });
+
+        // Filtros
+        filterGender.addEventListener('change', applyFilters);
+        filterCity.addEventListener('change', applyFilters);
+        filterArea.addEventListener('change', applyFilters);
+        filterAge.addEventListener('change', applyFilters);
+        clearFiltersBtn.addEventListener('click', clearAllFilters);
+
+        // Botón de actualizar
+        document.getElementById('refresh-btn').addEventListener('click', loadData);
+
+        // Exportar datos
+        document.getElementById('export-data').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Funcionalidad de exportación en desarrollo. Por ahora, usa el enlace "Ver hoja de datos" para acceder a los datos completos.');
+        });
+
+        // ================= INICIALIZACIÓN =================
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 Iniciando plataforma de casting...');
+            loadData();
+        });
+    </script>
+</body>
+</html>
