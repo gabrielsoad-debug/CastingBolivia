@@ -78,8 +78,10 @@
             text-decoration: none;
         }
 
-        .logo i {
-            font-size: 2rem;
+        .logo-img {
+            height: 40px;
+            width: auto;
+            border-radius: 5px;
         }
 
         .nav-controls {
@@ -647,8 +649,9 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <i class="fas fa-film"></i>
-                CASTING DIGITAL
+                <!-- REEMPLAZA "logo.png" CON LA RUTA DE TU IMAGEN -->
+                <img src="logo.png" alt="Logo Casting Bolivia" class="logo-img">
+                CASTING BOLIVIA
             </a>
             
             <div class="nav-controls">
@@ -1119,6 +1122,9 @@
                     talents.push(talent);
                 }
             }
+            
+            // INVERTIR EL ORDEN: ÚLTIMO EN EL FORMULARIO APARECE PRIMERO
+            talents.reverse();
             
             return talents;
         }
