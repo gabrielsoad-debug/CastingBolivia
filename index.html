@@ -1,769 +1,440 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="dark" lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CASTING DIGITAL | Book de Talento</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --dark-bg: #0f0f13;
-            --card-bg: #1a1a23;
-            --accent: #ff2e63;
-            --accent-hover: #ff4777;
-            --primary: #6c63ff;
-            --secondary: #36d1dc;
-            --text: #e0e0e0;
-            --text-light: #a0a0b0;
-            --border: #2a2a35;
-            --success: #00d26a;
-            --warning: #ffb347;
-            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            
-            /* Colores redes sociales */
-            --instagram: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-            --facebook: #1877F2;
-            --tiktok: #000000;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--dark-bg);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* ===== HEADER Y NAVEGACIÓN ===== */
-        .navbar {
-            background: rgba(26, 26, 35, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 1.8rem;
-            background: linear-gradient(90deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-            border-radius: 5px;
-        }
-
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .refresh-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .refresh-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
-        }
-
-        .stats {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .stats .highlight {
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        /* ===== SISTEMA DE BÚSQUEDA Y FILTROS ===== */
-        .filters-section {
-            max-width: 1400px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .search-container {
-            margin-bottom: 25px;
-        }
-
-        .search-box {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 16px 50px 16px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            color: var(--text);
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-light);
-        }
-
-        .filters-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .filter-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .filter-select {
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .filter-select:hover, .filter-select:focus {
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .filter-select option {
-            background: var(--card-bg);
-            color: var(--text);
-        }
-
-        .clear-filters {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-light);
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            transition: var(--transition);
-            align-self: flex-end;
-        }
-
-        .clear-filters:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        /* ===== CONTENIDO PRINCIPAL ===== */
-        .main-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px 50px;
-        }
-
-        /* ===== TARJETAS DE TALENTO (VERSIÓN VERTICAL) ===== */
-        .talent-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .talent-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .talent-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-            border-color: rgba(108, 99, 255, 0.3);
-        }
-
-        /* CONTENEDOR DE FOTO VERTICAL */
-        .photo-container {
-            position: relative;
-            width: 100%;
-            height: 380px;
-            overflow: hidden;
-            background: linear-gradient(45deg, #1a1a23 0%, #2a2a35 100%);
-        }
-
-        .card-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .talent-card:hover .card-photo {
-            transform: scale(1.05);
-        }
-
-        .photo-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(26, 26, 35, 0.9), transparent);
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .talent-category {
-            background: var(--accent);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .talent-gender {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            backdrop-filter: blur(5px);
-        }
-
-        /* CONTENIDO DE LA TARJETA */
-        .card-content {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .talent-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: white;
-            line-height: 1.3;
-        }
-
-        .talent-location {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .talent-location i {
-            color: var(--primary);
-        }
-
-        .talent-details {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .detail-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .detail-label {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .detail-value {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: white;
-        }
-
-        .skills-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: auto;
-            margin-bottom: 15px;
-        }
-
-        .skill-tag {
-            background: rgba(108, 99, 255, 0.15);
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px solid rgba(108, 99, 255, 0.3);
-        }
-
-        /* BOTONES DE ACCIÓN */
-        .card-actions {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .action-btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .video-btn {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
-            color: white;
-        }
-
-        .video-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.3);
-        }
-
-        /* ===== BOTONES DE REDES SOCIALES ===== */
-        .social-links {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .social-btn i {
-            font-size: 1rem;
-            width: 20px;
-            text-align: center;
-        }
-
-        .social-btn span {
-            flex: 1;
-            text-align: left;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .instagram-btn {
-            background: var(--instagram);
-            color: white;
-        }
-
-        .instagram-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.3);
-        }
-
-        .facebook-btn {
-            background: var(--facebook);
-            color: white;
-        }
-
-        .facebook-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(24, 119, 242, 0.3);
-        }
-
-        .tiktok-btn {
-            background: var(--tiktok);
-            color: white;
-        }
-
-        .tiktok-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* ===== ESTADOS ===== */
-        .loading-state {
-            text-align: center;
-            padding: 80px 20px;
-            grid-column: 1 / -1;
-        }
-
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(108, 99, 255, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--primary);
-            margin: 0 auto 25px;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 80px 20px;
-            grid-column: 1 / -1;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            border: 2px dashed var(--border);
-        }
-
-        .empty-icon {
-            font-size: 4rem;
-            color: var(--border);
-            margin-bottom: 20px;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            margin-top: 60px;
-            padding: 30px 20px;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            color: var(--text-light);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-
-        .footer-link:hover {
-            color: var(--primary);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1200px) {
-            .talent-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AYNI | Talentos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed-dim": "#ababab",
+              "secondary-fixed": "#c6c6c6",
+              "primary": "#ffffff",
+              "on-secondary-fixed-variant": "#3b3b3b",
+              "tertiary-fixed": "#5e5e5e",
+              "primary-container": "#d4d4d4",
+              "on-secondary": "#1b1b1b",
+              "inverse-on-surface": "#303030",
+              "background": "#131313",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-dim": "#131313",
+              "on-primary-fixed": "#ffffff",
+              "outline": "#919191",
+              "on-primary-container": "#000000",
+              "on-background": "#e2e2e2",
+              "surface-variant": "#353535",
+              "on-primary": "#1b1b1b",
+              "primary-fixed-dim": "#474747",
+              "surface-bright": "#393939",
+              "surface-container-low": "#1b1b1b",
+              "secondary": "#c6c6c6",
+              "primary-fixed": "#5e5e5e",
+              "on-surface": "#e2e2e2",
+              "on-tertiary": "#1b1b1b",
+              "on-secondary-container": "#e2e2e2",
+              "inverse-surface": "#e2e2e2",
+              "secondary-container": "#474747",
+              "surface-container-highest": "#353535",
+              "error-container": "#93000a",
+              "surface-container-high": "#2a2a2a",
+              "surface-container": "#1f1f1f",
+              "error": "#ffb4ab",
+              "tertiary-fixed-dim": "#474747",
+              "on-tertiary-fixed-variant": "#e2e2e2",
+              "on-primary-fixed-variant": "#e2e2e2",
+              "outline-variant": "#474747",
+              "on-secondary-fixed": "#1b1b1b",
+              "surface-tint": "#c6c6c6",
+              "tertiary-container": "#919191",
+              "on-surface-variant": "#c6c6c6",
+              "on-error": "#690005",
+              "on-error-container": "#ffdad6",
+              "on-tertiary-fixed": "#ffffff",
+              "on-tertiary-container": "#000000",
+              "tertiary": "#e2e2e2",
+              "inverse-primary": "#5e5e5e",
+              "surface": "#131313",
+              "accent": "#ff2e63",
+              "accent-hover": "#ff4777"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+            animation: {
+              'marquee': 'marquee 25s linear infinite',
+              'spin': 'spin 1s linear infinite',
+              'fade-in': 'fadeIn 0.5s ease forwards'
+            },
+            keyframes: {
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-100%)' }
+              },
+              spin: {
+                to: { transform: 'rotate(360deg)' }
+              },
+              fadeIn: {
+                from: { opacity: '0', transform: 'translateY(20px)' },
+                to: { opacity: '1', transform: 'translateY(0)' }
+              }
             }
-        }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+      }
+      .flicker-hover:hover {
+        animation: flicker 0.05s infinite;
+      }
+      @keyframes flicker {
+        0% { opacity: 1; }
+        50% { opacity: 0.8; }
+        100% { opacity: 1; }
+      }
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #131313; }
+      ::-webkit-scrollbar-thumb { background: #393939; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #5e5e5e; }
+      
+      .talent-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .talent-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      }
+      .talent-card:hover .card-photo {
+        transform: scale(1.05);
+      }
+      .card-photo {
+        transition: transform 0.6s ease;
+      }
+      
+      input[type="range"] {
+        -webkit-appearance: none;
+        background: transparent;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 16px;
+        width: 16px;
+        background: #ffffff;
+        cursor: pointer;
+        margin-top: -6px;
+      }
+      input[type="range"]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 4px;
+        cursor: pointer;
+        background: #393939;
+      }
+      input[type="checkbox"] {
+        accent-color: #ffffff;
+      }
+      
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid rgba(108, 99, 255, 0.2);
+        border-radius: 50%;
+        border-top-color: #6c63ff;
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      .social-btn {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .social-btn:hover {
+        transform: translateY(-2px);
+      }
+      
+      .instagram-btn {
+        background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      }
+      .instagram-btn:hover {
+        box-shadow: 0 6px 20px rgba(225, 48, 108, 0.3);
+      }
+      .facebook-btn {
+        background: #1877F2;
+      }
+      .facebook-btn:hover {
+        box-shadow: 0 6px 20px rgba(24, 119, 242, 0.3);
+      }
+      .tiktok-btn {
+        background: #000000;
+        border: 1px solid #333;
+      }
+      .tiktok-btn:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      }
+      .youtube-btn {
+        background: linear-gradient(135deg, #ff0000, #cc0000);
+      }
+      .youtube-btn:hover {
+        box-shadow: 0 6px 20px rgba(255, 0, 0, 0.3);
+      }
 
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .nav-controls {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .filters-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .talent-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-            
-            .photo-container {
-                height: 320px;
-            }
-            
-            .social-btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-            
-            .social-btn i {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .talent-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .photo-container {
-                height: 280px;
-            }
-            
-            .card-actions {
-                flex-direction: column;
-            }
-            
-            .logo {
-                font-size: 1.5rem;
-            }
-            
-            .social-links {
-                gap: 6px;
-            }
-        }
-
-        /* ===== ANIMACIONES ===== */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        /* ===== SCROLLBAR PERSONALIZADA ===== */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--dark-bg);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
-        }
+      /* Estilos para el modal de error */
+      .error-modal {
+        backdrop-filter: blur(10px);
+      }
     </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
 </head>
-<body>
-    <!-- NAVEGACIÓN -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <!-- REEMPLAZA "logo.png" CON LA RUTA DE TU IMAGEN -->
-                <img src="logo.png" alt="Logo Casting Bolivia" class="logo-img">
-                CASTING BOLIVIA
-            </a>
-            
-            <div class="nav-controls">
-                <div class="stats">
-                    <i class="fas fa-users"></i>
-                    <span>Talentos: <span class="highlight" id="talent-count">0</span></span>
-                </div>
-                <button class="refresh-btn" id="refresh-btn">
-                    <i class="fas fa-sync-alt"></i>
-                    Actualizar
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar TRANSPARENTE -->
+<header class="fixed top-0 w-full z-50 bg-gradient-to-b from-black/60 via-black/20 to-transparent backdrop-blur-sm flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-4">
+<img alt="AYNI LOGO" class="h-8 w-auto brightness-200 drop-shadow-lg" src="AYNI STUDIOS BLANCO.png"/>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8">
+<a class="font-headline tracking-[-2%] uppercase font-bold text-sm text-white/80 hover:text-white transition-opacity drop-shadow-md" href="index.html">Inicio</a>
+<a class="font-headline tracking-[-2%] uppercase font-bold text-sm text-white/80 hover:text-white transition-opacity drop-shadow-md" href="#">Proyectos</a>
+<a class="font-headline tracking-[-2%] uppercase font-bold text-sm text-white hover:opacity-70 transition-opacity drop-shadow-md" href="#">Talentos</a>
+<a class="font-headline tracking-[-2%] uppercase font-bold text-sm text-white/80 hover:text-white transition-opacity drop-shadow-md" href="#">Contacto</a>
+</nav>
+<button class="material-symbols-outlined text-white text-2xl drop-shadow-md" data-icon="menu">menu</button>
+</div>
+</header>
+
+<main class="pt-24 min-h-screen flex">
+<!-- Sidebar Filters -->
+<aside class="w-80 h-[calc(100vh-6rem)] sticky top-24 border-r border-white/10 bg-surface-container-lowest overflow-y-auto px-8 py-12 hidden lg:block">
+<div class="space-y-10">
+<!-- Búsqueda -->
+<div>
+<h3 class="text-[0.75rem] font-bold uppercase tracking-widest mb-4 text-outline">Búsqueda</h3>
+<div class="relative">
+<input class="w-full bg-surface-container border border-outline-variant py-3 px-4 text-sm font-medium focus:outline-none focus:border-white transition-colors text-white placeholder-on-surface-variant" id="search-input" placeholder="Nombre, habilidades, ciudad..." type="text"/>
+<i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-outline"></i>
+</div>
+</div>
+
+<!-- Categoría -->
+<div>
+<h3 class="text-[0.75rem] font-bold uppercase tracking-widest mb-4 text-outline">Área de Enfoque</h3>
+<select class="w-full bg-surface-container border-b border-outline py-3 text-sm font-medium focus:outline-none focus:border-white transition-colors text-white" id="filter-area">
+<option value="">Todas las áreas</option>
+</select>
+</div>
+
+<!-- Género -->
+<div>
+<h3 class="text-[0.75rem] font-bold uppercase tracking-widest mb-4 text-outline">Género</h3>
+<select class="w-full bg-surface-container border-b border-outline py-3 text-sm font-medium focus:outline-none focus:border-white transition-colors text-white" id="filter-gender">
+<option value="">Todos</option>
+<option value="Masculino">Masculino</option>
+<option value="Femenino">Femenino</option>
+<option value="Otro">Otro</option>
+</select>
+</div>
+
+<!-- Ciudad -->
+<div>
+<h3 class="text-[0.75rem] font-bold uppercase tracking-widest mb-4 text-outline">Ciudad</h3>
+<select class="w-full bg-surface-container border-b border-outline py-3 text-sm font-medium focus:outline-none focus:border-white transition-colors text-white" id="filter-city">
+<option value="">Todas las ciudades</option>
+</select>
+</div>
+
+<!-- Edad -->
+<div>
+<h3 class="text-[0.75rem] font-bold uppercase tracking-widest mb-4 text-outline">Rango de Edad</h3>
+<select class="w-full bg-surface-container border-b border-outline py-3 text-sm font-medium focus:outline-none focus:border-white transition-colors text-white" id="filter-age">
+<option value="">Todas las edades</option>
+<option value="18-25">18-25 años</option>
+<option value="26-35">26-35 años</option>
+<option value="36+">36+ años</option>
+</select>
+</div>
+
+<!-- Stats -->
+<div class="pt-6 border-t border-outline-variant">
+<div class="flex items-center justify-between text-sm">
+<span class="text-outline">Talentos</span>
+<span class="text-white font-bold text-lg" id="talent-count">0</span>
+</div>
+</div>
+
+<button class="w-full bg-white text-black py-4 text-xs font-black uppercase tracking-[0.2em] hover:bg-primary-container transition-colors flex items-center justify-center gap-2" id="refresh-btn">
+<i class="fas fa-sync-alt"></i> Actualizar Datos
                 </button>
-            </div>
-        </div>
-    </nav>
+<button class="w-full border border-outline-variant text-on-surface-variant py-3 text-xs font-bold uppercase tracking-[0.2em] hover:border-white hover:text-white transition-colors mt-3" id="clear-filters">
+                    Limpiar Filtros
+                </button>
 
-    <!-- SISTEMA DE BÚSQUEDA Y FILTROS -->
-    <section class="filters-section">
-        <div class="search-container">
-            <div class="search-box">
-                <input type="text" 
-                       class="search-input" 
-                       id="search-input" 
-                       placeholder="Buscar talento por nombre, habilidades, ciudad..."
-                       autocomplete="off">
-                <i class="fas fa-search search-icon"></i>
-            </div>
-        </div>
+<!-- Información de conexión -->
+<div class="pt-6 border-t border-outline-variant">
+<p class="text-[10px] text-outline uppercase tracking-widest mb-2">Estado</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error" id="connection-status"></div>
+<span class="text-xs text-outline" id="connection-text">Sin conexión</span>
+</div>
+</div>
+</div>
+</aside>
 
-        <div class="filters-container">
-            <div class="filter-group">
-                <label class="filter-label">Género</label>
-                <select class="filter-select" id="filter-gender">
-                    <option value="">Todos</option>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
-                    <option value="Otro">Otro</option>
-                </select>
-            </div>
+<!-- Content Area -->
+<section class="flex-1 bg-background px-8 lg:px-12 py-12">
+<div class="flex flex-col md:flex-row justify-between items-baseline mb-12 gap-8">
+<div>
+<span class="text-[0.75rem] font-bold uppercase tracking-[0.3em] text-outline mb-4 block">Directorio de Talentos</span>
+<h1 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none text-white">Bolivia<br/>Casting</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="h-10 w-[1px] bg-outline-variant hidden md:block"></div>
+<button class="flex items-center gap-2 group text-white">
+<span class="material-symbols-outlined text-xl">sort</span>
+<span class="text-[10px] font-black uppercase tracking-widest group-hover:mr-2 transition-all">Ordenar Por</span>
+</button>
+</div>
+</div>
 
-            <div class="filter-group">
-                <label class="filter-label">Ciudad</label>
-                <select class="filter-select" id="filter-city">
-                    <option value="">Todas</option>
-                    <!-- Las ciudades se cargarán dinámicamente -->
-                </select>
-            </div>
+<!-- Loading State -->
+<div class="hidden flex flex-col items-center justify-center py-20" id="loading-state">
+<div class="loading-spinner mb-6"></div>
+<p class="text-outline text-sm">Cargando talentos desde Google Sheets...</p>
+</div>
 
-            <div class="filter-group">
-                <label class="filter-label">Área de Enfoque</label>
-                <select class="filter-select" id="filter-area">
-                    <option value="">Todas</option>
-                    <!-- Las áreas se cargarán dinámicamente -->
-                </select>
-            </div>
+<!-- Empty State -->
+<div class="hidden flex flex-col items-center justify-center py-20 border-2 border-dashed border-outline-variant" id="empty-state">
+<i class="fas fa-search text-6xl text-outline mb-6"></i>
+<h3 class="text-2xl font-bold text-white mb-4">No se encontraron talentos</h3>
+<p class="text-outline mb-8">Prueba con otros criterios de búsqueda o limpia los filtros</p>
+<button class="bg-white text-black px-8 py-3 text-xs font-black uppercase tracking-[0.2em] hover:bg-primary-container transition-colors" onclick="clearAllFilters()">
+                    Limpiar Filtros
+                </button>
+</div>
 
-            <div class="filter-group">
-                <label class="filter-label">Edad</label>
-                <select class="filter-select" id="filter-age">
-                    <option value="">Todas las edades</option>
-                    <option value="18-25">18-25 años</option>
-                    <option value="26-35">26-35 años</option>
-                    <option value="36+">36+ años</option>
-                </select>
-            </div>
+<!-- Error State con Instrucciones -->
+<div class="hidden flex flex-col items-center justify-center py-12 border-2 border-dashed border-error/30 bg-error-container/10" id="error-state">
+<i class="fas fa-exclamation-triangle text-6xl text-error mb-6"></i>
+<h3 class="text-2xl font-bold text-white mb-4">Error de Conexión</h3>
+<p class="text-outline mb-6 text-center max-w-md">No se pudieron cargar los datos desde Google Sheets debido a restricciones de CORS.</p>
 
-            <button class="clear-filters" id="clear-filters">
-                <i class="fas fa-times"></i>
-                Limpiar filtros
-            </button>
-        </div>
-    </section>
+<div class="bg-surface-container p-6 max-w-lg w-full mb-6">
+<h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Soluciones:</h4>
+<ol class="text-outline text-sm space-y-3 list-decimal list-inside">
+<li><strong class="text-white">Usar Live Server (Recomendado):</strong>
+<ul class="mt-2 ml-6 space-y-1 text-xs">
+<li>• Instala la extensión "Live Server" en VS Code</li>
+<li>• Haz clic derecho en este archivo → "Open with Live Server"</li>
+</ul>
+</li>
+<li class="pt-2"><strong class="text-white">Subir a un hosting:</strong> GitHub Pages, Netlify, Vercel, etc.</li>
+<li class="pt-2"><strong class="text-white">Usar XAMPP/WAMP:</strong> Coloca el archivo en la carpeta htdocs</li>
+</ol>
+</div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="main-container">
-        <div id="talent-container">
-            <div class="loading-state">
-                <div class="loading-spinner"></div>
-                <p style="color: var(--text-light); margin-top: 15px;">
-                    Cargando talentos desde Google Sheets...
-                </p>
-            </div>
-        </div>
-    </main>
+<div class="flex gap-4">
+<button onclick="loadData()" class="bg-white text-black px-8 py-3 text-xs font-black uppercase tracking-[0.2em] hover:bg-primary-container transition-colors flex items-center gap-2">
+<i class="fas fa-redo"></i> Reintentar
+                    </button>
+<a href="https://docs.google.com/spreadsheets/d/1-ME_fak7GmarMFoFKboeshrJjs09cVz91RbnZWxJ--8/edit#gid=1450427184" target="_blank" class="border border-white text-white px-8 py-3 text-xs font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-colors flex items-center gap-2">
+<i class="fas fa-external-link-alt"></i> Ver Hoja Directa
+                    </a>
+</div>
+</div>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p>Plataforma de Casting Digital • Conectada a Google Sheets en tiempo real</p>
-        <div class="footer-links">
-            <a href="https://forms.gle/1bNnZQNBbvvWMkSm7" 
-               target="_blank" class="footer-link">
-                <i class="fas fa-plus-circle"></i> Agregar talento
+<!-- Talent Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8" id="talent-grid">
+<!-- Las tarjetas se insertarán dinámicamente aquí -->
+</div>
+
+<!-- Pagination -->
+<div class="mt-24 flex justify-center items-center gap-12 border-t border-outline-variant pt-12">
+<button class="text-[10px] font-black tracking-[0.4em] opacity-40 cursor-not-allowed text-outline">ANTERIOR</button>
+<div class="flex gap-8 text-sm font-bold">
+<span class="border-b-2 border-white pb-1 text-white">01</span>
+<span class="text-outline hover:text-white transition-colors cursor-pointer">02</span>
+<span class="text-outline hover:text-white transition-colors cursor-pointer">03</span>
+<span class="text-outline">...</span>
+</div>
+<button class="text-[10px] font-black tracking-[0.4em] hover:tracking-[0.6em] transition-all text-white">SIGUIENTE</button>
+</div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-[#0e0e0e] w-full py-24 px-6 flex flex-col items-center space-y-12">
+<div class="flex flex-col items-center space-y-4">
+<img alt="Logo" class="h-16 grayscale brightness-200" src="AYNI STUDIOS BLANCO.png"/>
+</div>
+<div class="flex flex-wrap justify-center gap-12">
+<a class="font-label text-[10px] tracking-[0.2rem] uppercase text-[#919191] hover:text-white transition-colors" href="https://forms.gle/1bNnZQNBbvvWMkSm7" target="_blank">
+<i class="fas fa-plus-circle mr-2"></i>Agregar Talento
             </a>
-            <a href="https://docs.google.com/spreadsheets/d/1-ME_fak7GmarMFoFKboeshrJjs09cVz91RbnZWxJ--8/edit#gid=1450427184" 
-               target="_blank" class="footer-link">
-                <i class="fas fa-table"></i> Ver hoja de datos
+<a class="font-label text-[10px] tracking-[0.2rem] uppercase text-[#919191] hover:text-white transition-colors" href="https://docs.google.com/spreadsheets/d/1-ME_fak7GmarMFoFKboeshrJjs09cVz91RbnZWxJ--8/edit#gid=1450427184" target="_blank">
+<i class="fas fa-table mr-2"></i>Ver Hoja de Datos
             </a>
-            <a href="#" class="footer-link" id="export-data">
-                <i class="fas fa-download"></i> Exportar datos
+<a class="font-label text-[10px] tracking-[0.2rem] uppercase text-[#919191] hover:text-white transition-colors" href="#">
+<i class="fas fa-download mr-2"></i>Exportar
             </a>
-        </div>
-        <p style="margin-top: 20px; font-size: 0.8rem; color: #666;">
-            © 2024 Book de Talento Digital • v4.0 con Redes Sociales
-        </p>
-    </footer>
+</div>
+<div class="flex flex-col items-center space-y-8 pt-12 border-t border-white/5 w-full max-w-4xl">
+<div class="flex gap-8">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-white cursor-pointer transition-colors">play_circle</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-white cursor-pointer transition-colors">photo_camera</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-white cursor-pointer transition-colors">alternate_email</span>
+</div>
+<p class="font-label text-[10px] tracking-[0.2rem] uppercase text-[#919191] text-center">
+                © 2024 AYNI. TODOS LOS DERECHOS RESERVADOS.
+            </p>
+</div>
+</footer>
 
-    <script>
+<!-- Mobile Navigation Drawer (Hidden by default) -->
+<div class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-md translate-x-full transition-transform duration-500 hidden" id="drawer">
+<div class="bg-surface-container-low h-screen w-80 absolute right-0 flex flex-col p-8 space-y-8 shadow-[20px_0_40px_rgba(0,0,0,0.4)]">
+<div class="flex justify-between items-center mb-12">
+<span class="font-headline text-xl font-black text-white">AYNI</span>
+<button class="material-symbols-outlined text-white" data-icon="close" onclick="document.getElementById('drawer').classList.add('translate-x-full')">close</button>
+</div>
+<nav class="flex flex-col space-y-6">
+<a class="flex items-center gap-4 text-[#c6c6c6] font-headline text-lg uppercase tracking-widest hover:bg-[#1f1f1f] p-4 transition-all" href="index.html">
+<span class="material-symbols-outlined" data-icon="home">home</span> Inicio
+                </a>
+<a class="flex items-center gap-4 text-[#c6c6c6] font-headline text-lg uppercase tracking-widest hover:bg-[#1f1f1f] p-4 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="movie">movie</span> Proyectos
+                </a>
+<a class="flex items-center gap-4 text-white font-headline text-lg font-bold uppercase tracking-widest bg-[#393939] p-4" href="#">
+<span class="material-symbols-outlined" data-icon="stars">stars</span> Talentos
+                </a>
+<a class="flex items-center gap-4 text-[#c6c6c6] font-headline text-lg uppercase tracking-widest hover:bg-[#1f1f1f] p-4 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span> Contacto
+                </a>
+</nav>
+</div>
+</div>
+
+<script>
         // ================= CONFIGURACIÓN =================
         const ORIGINAL_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT7LFrMcn-08Ktj9llV6twD3sLN5cMcRm6V4CkF8SAsyqo3ciX-BkoXtm7eyULBNa2ny-c-hAQlN-wm/pub?output=csv';
+        
+        // Múltiples proxies CORS alternativos (ordenados por fiabilidad)
         const PROXIES = [
-            `https://corsproxy.io/?${encodeURIComponent(ORIGINAL_SHEET_URL)}`,
             `https://api.allorigins.win/raw?url=${encodeURIComponent(ORIGINAL_SHEET_URL)}`,
-            ORIGINAL_SHEET_URL
+            `https://thingproxy.freeboard.io/fetch/${ORIGINAL_SHEET_URL}`,
+            `https://corsproxy.io/?${encodeURIComponent(ORIGINAL_SHEET_URL)}`,
+            ORIGINAL_SHEET_URL // Intento directo (funciona solo en servidor local)
         ];
 
         // Mapeo de columnas (INCLUYENDO REDES SOCIALES)
@@ -782,7 +453,6 @@
             video: 'VideoReel',
             areaEnfoque: 'Área de Enfoque',
             genero: 'Genero',
-            // NUEVAS COLUMNAS PARA REDES SOCIALES
             instagram: 'Enlace de Instagram Ejem: https://instagram.com/maria.actriz',
             facebook: 'Enlace de Facebook Ejem: https://facebook.com/maria.actriz',
             tiktok: 'Enlace de TikTok Ejem: https://tiktok.com/@maria.danza'
@@ -794,19 +464,31 @@
         let currentProxyIndex = 0;
         let uniqueCities = new Set();
         let uniqueAreas = new Set();
-        
-        // Variables para búsqueda
         let searchTimeout = null;
+
+        // Elementos DOM
         const searchInput = document.getElementById('search-input');
         const filterGender = document.getElementById('filter-gender');
         const filterCity = document.getElementById('filter-city');
         const filterArea = document.getElementById('filter-area');
         const filterAge = document.getElementById('filter-age');
         const clearFiltersBtn = document.getElementById('clear-filters');
+        const refreshBtn = document.getElementById('refresh-btn');
+        const talentGrid = document.getElementById('talent-grid');
+        const loadingState = document.getElementById('loading-state');
+        const emptyState = document.getElementById('empty-state');
+        const errorState = document.getElementById('error-state');
+        const talentCount = document.getElementById('talent-count');
+        const connectionStatus = document.getElementById('connection-status');
+        const connectionText = document.getElementById('connection-text');
 
-        // ================= FUNCIONES PRINCIPALES =================
+        // ================= FUNCIONES UTILIDAD =================
 
-        // Función para convertir fotos de Drive
+        function updateConnectionStatus(status, text) {
+            connectionStatus.className = `w-2 h-2 rounded-full ${status === 'success' ? 'bg-success' : status === 'error' ? 'bg-error' : 'bg-warning'}`;
+            connectionText.textContent = text;
+        }
+
         function convertDriveToImage(driveUrl) {
             if (!driveUrl || driveUrl.trim() === '') {
                 return 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
@@ -839,7 +521,6 @@
             return driveUrl;
         }
 
-        // Función para obtener ID de YouTube
         function getYouTubeVideoId(url) {
             if (!url) return null;
             if (url.includes('drive.google.com')) return null;
@@ -857,13 +538,11 @@
             return null;
         }
 
-        // FUNCIÓN PARA EXTRAER USUARIO DE REDES SOCIALES
         function extractSocialUsername(url, platform) {
             if (!url || url.trim() === '' || url.includes('Ejem:')) return null;
             
             let cleanUrl = url.trim().toLowerCase();
             
-            // Asegurar que tenga https:// si no lo tiene
             if (!cleanUrl.startsWith('http')) {
                 cleanUrl = 'https://' + cleanUrl;
             }
@@ -913,7 +592,6 @@
                     }
                 }
                 
-                // Si no se puede extraer usuario, devolver el enlace acortado
                 return cleanUrl.length > 25 ? cleanUrl.substring(0, 25) + '...' : cleanUrl;
             } catch (error) {
                 console.error(`Error procesando ${platform}:`, error);
@@ -921,23 +599,19 @@
             }
         }
 
-        // Función para limpiar enlace de red social
         function cleanSocialUrl(url) {
             if (!url || url.trim() === '') return '';
             
             let cleanUrl = url.trim();
             
-            // Limpiar "Ejem: ..." si está presente
             if (cleanUrl.includes('Ejem:')) {
                 cleanUrl = cleanUrl.split('Ejem:')[0].trim();
             }
             
-            // Si queda vacío después de limpiar
             if (!cleanUrl || cleanUrl === 'https://' || cleanUrl === 'http://') {
                 return '';
             }
             
-            // Asegurar que tenga http:// si no lo tiene
             if (!cleanUrl.startsWith('http')) {
                 cleanUrl = 'https://' + cleanUrl;
             }
@@ -945,7 +619,6 @@
             return cleanUrl;
         }
 
-        // Parsear línea CSV
         function parseCSVLine(line) {
             const values = [];
             let current = '';
@@ -993,74 +666,61 @@
             });
         }
 
-        // Cargar datos
+        // ================= CARGA DE DATOS =================
+
         async function loadData() {
-            const container = document.getElementById('talent-container');
+            showLoading(true);
+            hideError();
+            updateConnectionStatus('warning', 'Conectando...');
             
-            try {
-                container.innerHTML = `
-                    <div class="loading-state">
-                        <div class="loading-spinner"></div>
-                        <p style="color: var(--text-light); margin-top: 15px;">
-                            Actualizando datos desde Google Sheets...
-                        </p>
-                    </div>
-                `;
-                
-                let success = false;
-                let csvText = '';
-                
-                for (let i = 0; i < PROXIES.length; i++) {
-                    try {
-                        const proxyUrl = PROXIES[i];
-                        const controller = new AbortController();
-                        const timeoutId = setTimeout(() => controller.abort(), 10000);
-                        
-                        const response = await fetch(`${proxyUrl}&t=${Date.now()}`, {
-                            signal: controller.signal
-                        });
-                        
-                        clearTimeout(timeoutId);
-                        
-                        if (response.ok) {
-                            csvText = await response.text();
-                            if (csvText && csvText.trim().length > 10) {
-                                currentProxyIndex = i;
-                                success = true;
-                                break;
-                            }
+            let lastError = null;
+            
+            for (let i = 0; i < PROXIES.length; i++) {
+                try {
+                    const proxyUrl = PROXIES[i];
+                    console.log(`Intentando proxy ${i + 1}/${PROXIES.length}: ${proxyUrl.substring(0, 50)}...`);
+                    
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 15000);
+                    
+                    const response = await fetch(`${proxyUrl}&t=${Date.now()}`, {
+                        signal: controller.signal,
+                        headers: {
+                            'Accept': 'text/csv,application/json,*/*'
                         }
-                    } catch (error) {
-                        continue;
+                    });
+                    
+                    clearTimeout(timeoutId);
+                    
+                    if (response.ok) {
+                        const csvText = await response.text();
+                        if (csvText && csvText.trim().length > 10 && csvText.includes(',')) {
+                            console.log('✅ Datos cargados exitosamente');
+                            
+                            allTalents = parseCSVData(csvText);
+                            updateFilters();
+                            applyFilters();
+                            talentCount.textContent = allTalents.length;
+                            updateConnectionStatus('success', `Conectado (${allTalents.length} talentos)`);
+                            
+                            showLoading(false);
+                            return;
+                        }
                     }
+                } catch (error) {
+                    console.warn(`Proxy ${i + 1} falló:`, error.message);
+                    lastError = error;
+                    continue;
                 }
-                
-                if (!success) {
-                    throw new Error('Error de conexión');
-                }
-                
-                allTalents = parseCSVData(csvText);
-                updateFilters();
-                applyFilters();
-                
-                document.getElementById('talent-count').textContent = allTalents.length;
-                
-            } catch (error) {
-                console.error('Error:', error);
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-exclamation-triangle empty-icon"></i>
-                        <h3 style="color: var(--accent); margin-bottom: 15px;">Error de conexión</h3>
-                        <p style="margin-bottom: 20px;">No se pudieron cargar los datos</p>
-                        <button class="refresh-btn" onclick="loadData()">
-                            <i class="fas fa-redo"></i> Reintentar
-                        </button>
-                    </div>
-                `;
             }
+            
+            // Si llegamos aquí, todos los proxies fallaron
+            console.error('Todos los proxies fallaron');
+            updateConnectionStatus('error', 'Error de conexión');
+            showError();
+            showLoading(false);
         }
 
-        // Parsear datos CSV
         function parseCSVData(csvText) {
             const lines = csvText.split('\n').filter(line => line.trim() !== '');
             if (lines.length < 2) return [];
@@ -1104,17 +764,14 @@
                 });
                 
                 if (talent.nombre && talent.nombre.trim()) {
-                    // Procesar foto
                     talent.foto = convertDriveToImage(talent.foto);
                     talent.id = talents.length + 1;
                     
-                    // Extraer solo el número de la edad
                     if (talent.edad) {
                         const ageMatch = talent.edad.match(/\d+/);
                         talent.edadNum = ageMatch ? parseInt(ageMatch[0]) : null;
                     }
                     
-                    // Limpiar enlaces de redes sociales
                     talent.instagram = cleanSocialUrl(talent.instagram);
                     talent.facebook = cleanSocialUrl(talent.facebook);
                     talent.tiktok = cleanSocialUrl(talent.tiktok);
@@ -1123,15 +780,12 @@
                 }
             }
             
-            // INVERTIR EL ORDEN: ÚLTIMO EN EL FORMULARIO APARECE PRIMERO
             talents.reverse();
-            
             return talents;
         }
 
         // ================= SISTEMA DE FILTROS =================
 
-        // Actualizar opciones de filtros
         function updateFilters() {
             uniqueCities.clear();
             uniqueAreas.clear();
@@ -1141,30 +795,31 @@
                 if (talent.areaEnfoque) uniqueAreas.add(talent.areaEnfoque);
             });
             
-            const citySelect = document.getElementById('filter-city');
-            citySelect.innerHTML = '<option value="">Todas</option>';
+            const currentCity = filterCity.value;
+            filterCity.innerHTML = '<option value="">Todas las ciudades</option>';
             Array.from(uniqueCities).sort().forEach(city => {
                 if (city) {
                     const option = document.createElement('option');
                     option.value = city;
                     option.textContent = city;
-                    citySelect.appendChild(option);
+                    if (city === currentCity) option.selected = true;
+                    filterCity.appendChild(option);
                 }
             });
             
-            const areaSelect = document.getElementById('filter-area');
-            areaSelect.innerHTML = '<option value="">Todas</option>';
+            const currentArea = filterArea.value;
+            filterArea.innerHTML = '<option value="">Todas las áreas</option>';
             Array.from(uniqueAreas).sort().forEach(area => {
                 if (area) {
                     const option = document.createElement('option');
                     option.value = area;
                     option.textContent = area;
-                    areaSelect.appendChild(option);
+                    if (area === currentArea) option.selected = true;
+                    filterArea.appendChild(option);
                 }
             });
         }
 
-        // Aplicar filtros
         function applyFilters() {
             const searchTerm = searchInput.value.toLowerCase();
             const genderFilter = filterGender.value;
@@ -1212,138 +867,6 @@
             displayTalents();
         }
 
-        // Mostrar talentos
-        function displayTalents() {
-            const container = document.getElementById('talent-container');
-            
-            if (filteredTalents.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-search empty-icon"></i>
-                        <h3>No se encontraron talentos</h3>
-                        <p>Prueba con otros criterios de búsqueda o limpia los filtros</p>
-                        <button class="clear-filters" onclick="clearAllFilters()" 
-                                style="margin-top: 20px; background: var(--primary); color: white;">
-                            <i class="fas fa-times"></i> Limpiar todos los filtros
-                        </button>
-                    </div>
-                `;
-                return;
-            }
-            
-            const cardsHTML = filteredTalents.map((talent, index) => {
-                const youtubeId = getYouTubeVideoId(talent.video);
-                const hasVideo = youtubeId !== null;
-                
-                // Procesar habilidades para mostrar máximo 3
-                const habilidades = talent.habilidades ? 
-                    talent.habilidades.split(',').map(h => h.trim()).filter(h => h) : [];
-                
-                // Verificar si tiene redes sociales
-                const hasSocialMedia = talent.instagram || talent.facebook || talent.tiktok;
-                
-                return `
-                    <div class="talent-card fade-in" style="animation-delay: ${index * 0.05}s">
-                        <div class="photo-container">
-                            <img src="${talent.foto}" 
-                                 alt="${talent.nombre}" 
-                                 class="card-photo"
-                                 onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-                            
-                            <div class="photo-overlay">
-                                <div class="talent-category">${talent.areaEnfoque || 'Talento'}</div>
-                                <div class="talent-gender">${talent.genero || ''}</div>
-                            </div>
-                        </div>
-                        
-                        <div class="card-content">
-                            <h3 class="talent-name">${talent.nombre}</h3>
-                            
-                            <div class="talent-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>${talent.ciudad || 'Ubicación no especificada'}</span>
-                            </div>
-                            
-                            <div class="talent-details">
-                                <div class="detail-item">
-                                    <span class="detail-label">Edad</span>
-                                    <span class="detail-value">${talent.edad || 'N/A'}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Altura</span>
-                                    <span class="detail-value">${talent.altura || 'N/A'}</span>
-                                </div>
-                            </div>
-                            
-                            ${habilidades.length > 0 ? `
-                                <div class="skills-tags">
-                                    ${habilidades.slice(0, 3).map(skill => 
-                                        `<span class="skill-tag">${skill}</span>`
-                                    ).join('')}
-                                    ${habilidades.length > 3 ? 
-                                        `<span class="skill-tag">+${habilidades.length - 3}</span>` : ''
-                                    }
-                                </div>
-                            ` : ''}
-                            
-                            <div class="card-actions">
-                                ${hasVideo ? `
-                                    <button class="action-btn video-btn" onclick="window.open('https://www.youtube.com/watch?v=${youtubeId}', '_blank')">
-                                        <i class="fab fa-youtube"></i> Ver Reel
-                                    </button>
-                                ` : `
-                                    <button class="action-btn video-btn" disabled style="opacity: 0.6; cursor: not-allowed;">
-                                        <i class="fab fa-youtube"></i> Sin video
-                                    </button>
-                                `}
-                            </div>
-                            
-                            ${hasSocialMedia ? `
-                                <div class="social-links">
-                                    ${talent.instagram ? `
-                                        <a href="${talent.instagram}" 
-                                           target="_blank" 
-                                           class="social-btn instagram-btn"
-                                           title="${talent.instagram}">
-                                            <i class="fab fa-instagram"></i>
-                                            <span>${extractSocialUsername(talent.instagram, 'instagram') || 'Instagram'}</span>
-                                        </a>
-                                    ` : ''}
-                                    
-                                    ${talent.facebook ? `
-                                        <a href="${talent.facebook}" 
-                                           target="_blank" 
-                                           class="social-btn facebook-btn"
-                                           title="${talent.facebook}">
-                                            <i class="fab fa-facebook-f"></i>
-                                            <span>${extractSocialUsername(talent.facebook, 'facebook') || 'Facebook'}</span>
-                                        </a>
-                                    ` : ''}
-                                    
-                                    ${talent.tiktok ? `
-                                        <a href="${talent.tiktok}" 
-                                           target="_blank" 
-                                           class="social-btn tiktok-btn"
-                                           title="${talent.tiktok}">
-                                            <i class="fab fa-tiktok"></i>
-                                            <span>${extractSocialUsername(talent.tiktok, 'tiktok') || 'TikTok'}</span>
-                                        </a>
-                                    ` : ''}
-                                </div>
-                            ` : ''}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-            
-            container.innerHTML = `
-                <div class="talent-grid">
-                    ${cardsHTML}
-                </div>
-            `;
-        }
-
-        // Limpiar todos los filtros
         function clearAllFilters() {
             searchInput.value = '';
             filterGender.value = '';
@@ -1353,36 +876,180 @@
             applyFilters();
         }
 
+        // ================= VISUALIZACIÓN =================
+
+        function showLoading(show) {
+            if (show) {
+                loadingState.classList.remove('hidden');
+                talentGrid.classList.add('hidden');
+                emptyState.classList.add('hidden');
+                errorState.classList.add('hidden');
+            } else {
+                loadingState.classList.add('hidden');
+            }
+        }
+
+        function showError() {
+            errorState.classList.remove('hidden');
+            talentGrid.classList.add('hidden');
+            emptyState.classList.add('hidden');
+            loadingState.classList.add('hidden');
+        }
+
+        function hideError() {
+            errorState.classList.add('hidden');
+        }
+
+        function displayTalents() {
+            if (filteredTalents.length === 0) {
+                talentGrid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            emptyState.classList.add('hidden');
+            errorState.classList.add('hidden');
+            talentGrid.classList.remove('hidden');
+            
+            const cardsHTML = filteredTalents.map((talent, index) => {
+                const youtubeId = getYouTubeVideoId(talent.video);
+                const hasVideo = youtubeId !== null;
+                const habilidades = talent.habilidades ? 
+                    talent.habilidades.split(',').map(h => h.trim()).filter(h => h) : [];
+                const hasSocialMedia = talent.instagram || talent.facebook || talent.tiktok;
+                
+                return `
+                    <div class="talent-card bg-surface-container overflow-hidden border border-outline-variant" style="animation: fadeIn 0.5s ease forwards; animation-delay: ${index * 0.05}s; opacity: 0;">
+                        <div class="relative aspect-[3/4] overflow-hidden">
+                            <img src="${talent.foto}" 
+                                 alt="${talent.nombre}" 
+                                 class="card-photo w-full h-full object-cover grayscale brightness-90"
+                                 onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                            
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6">
+                                <div class="flex justify-between items-end">
+                                    <div>
+                                        <span class="text-white/60 text-[10px] font-bold tracking-[0.4em] uppercase mb-1 block">${talent.areaEnfoque || 'Talento'}</span>
+                                        <h3 class="text-2xl font-black text-white tracking-tighter uppercase leading-none">${talent.nombre}</h3>
+                                    </div>
+                                    <span class="text-white/80 text-xs font-medium uppercase tracking-widest">${talent.genero || ''}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center gap-2 text-outline text-sm">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                                <span>${talent.ciudad || 'Ubicación no especificada'}</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-widest text-outline block mb-1">Edad</span>
+                                    <span class="text-white font-medium">${talent.edad || 'N/A'}</span>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-widest text-outline block mb-1">Altura</span>
+                                    <span class="text-white font-medium">${talent.altura || 'N/A'}</span>
+                                </div>
+                            </div>
+                            
+                            ${habilidades.length > 0 ? `
+                                <div class="flex flex-wrap gap-2">
+                                    ${habilidades.slice(0, 3).map(skill => 
+                                        `<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 text-[10px] uppercase tracking-wider border border-outline-variant">${skill}</span>`
+                                    ).join('')}
+                                    ${habilidades.length > 3 ? 
+                                        `<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 text-[10px] uppercase tracking-wider border border-outline-variant">+${habilidades.length - 3}</span>` : ''}
+                                </div>
+                            ` : ''}
+                            
+                            <div class="flex gap-2 pt-2">
+                                ${hasVideo ? `
+                                    <button onclick="window.open('https://www.youtube.com/watch?v=${youtubeId}', '_blank')" 
+                                            class="flex-1 bg-white text-black py-3 text-[10px] font-black uppercase tracking-widest hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+                                        <i class="fab fa-youtube"></i> Ver Reel
+                                    </button>
+                                ` : `
+                                    <button disabled class="flex-1 bg-surface-container-high text-outline py-3 text-[10px] font-black uppercase tracking-widest cursor-not-allowed flex items-center justify-center gap-2 opacity-50">
+                                        <i class="fab fa-youtube"></i> Sin Video
+                                    </button>
+                                `}
+                            </div>
+                            
+                            ${hasSocialMedia ? `
+                                <div class="space-y-2 pt-2 border-t border-outline-variant">
+                                    ${talent.instagram ? `
+                                        <a href="${talent.instagram}" target="_blank" 
+                                           class="social-btn instagram-btn flex items-center gap-3 px-4 py-2 rounded text-white text-xs font-medium">
+                                            <i class="fab fa-instagram"></i>
+                                            <span class="truncate">${extractSocialUsername(talent.instagram, 'instagram') || 'Instagram'}</span>
+                                        </a>
+                                    ` : ''}
+                                    
+                                    ${talent.facebook ? `
+                                        <a href="${talent.facebook}" target="_blank" 
+                                           class="social-btn facebook-btn flex items-center gap-3 px-4 py-2 rounded text-white text-xs font-medium">
+                                            <i class="fab fa-facebook-f"></i>
+                                            <span class="truncate">${extractSocialUsername(talent.facebook, 'facebook') || 'Facebook'}</span>
+                                        </a>
+                                    ` : ''}
+                                    
+                                    ${talent.tiktok ? `
+                                        <a href="${talent.tiktok}" target="_blank" 
+                                           class="social-btn tiktok-btn flex items-center gap-3 px-4 py-2 rounded text-white text-xs font-medium">
+                                            <i class="fab fa-tiktok"></i>
+                                            <span class="truncate">${extractSocialUsername(talent.tiktok, 'tiktok') || 'TikTok'}</span>
+                                        </a>
+                                    ` : ''}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            talentGrid.innerHTML = cardsHTML;
+        }
+
         // ================= EVENT LISTENERS =================
 
-        // Búsqueda con debounce
         searchInput.addEventListener('input', () => {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(applyFilters, 300);
         });
 
-        // Filtros
         filterGender.addEventListener('change', applyFilters);
         filterCity.addEventListener('change', applyFilters);
         filterArea.addEventListener('change', applyFilters);
         filterAge.addEventListener('change', applyFilters);
+        
         clearFiltersBtn.addEventListener('click', clearAllFilters);
+        refreshBtn.addEventListener('click', loadData);
 
-        // Botón de actualizar
-        document.getElementById('refresh-btn').addEventListener('click', loadData);
-
-        // Exportar datos
-        document.getElementById('export-data').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Funcionalidad de exportación en desarrollo. Por ahora, usa el enlace "Ver hoja de datos" para acceder a los datos completos.');
+        // Mobile menu
+        const menuBtn = document.querySelector('[data-icon="menu"]');
+        const drawer = document.getElementById('drawer');
+        menuBtn.addEventListener('click', () => {
+            drawer.classList.remove('hidden');
+            setTimeout(() => {
+                drawer.classList.remove('translate-x-full');
+            }, 10);
         });
 
         // ================= INICIALIZACIÓN =================
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('🚀 Iniciando plataforma de casting...');
+            console.log('🎬 AYNI Talentos - Iniciando...');
+            console.log('📊 URL de datos:', ORIGINAL_SHEET_URL);
+            
+            // Detectar si estamos en file://
+            if (window.location.protocol === 'file:') {
+                console.warn('⚠️ Detectado acceso local (file://). Se recomienda usar Live Server.');
+                updateConnectionStatus('error', 'Modo local - Use Live Server');
+            }
+            
             loadData();
         });
     </script>
 </body>
-
 </html>
